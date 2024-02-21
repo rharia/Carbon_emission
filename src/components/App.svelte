@@ -45,20 +45,8 @@
     
     import { onMount } from 'svelte';
 
-    let energyData = [];
     let emissionData = []
 
-    // onMount(async () => {
-
-    //    const res = await fetch('raw.githubusercontent.com_owid_energy-data_master_owid-energy-data.csv'); 
-
-    //    const csv = await res.text();
-
-    //    energyData = d3.csvParse(csv, d3.autoType)
-
-    //    console.log(energyData);
-
-    // });
     onMount(async () => {
 
         const res = await fetch('Carbon Emission.csv'); 
