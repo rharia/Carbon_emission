@@ -12,7 +12,7 @@
   }
   h2 {
     text-align: left;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: normal;
 
   }
@@ -36,7 +36,7 @@
 
 <h1>Shower Power: Scrubbing the Earth Clean or Washing Away Our Future?</h1>
 <p>Exploring the Interplay Between Shower Frequency, Waste Generation, and Carbon Emissions</p>
-<h2>Hover Data</h2>
+<h2>Carbon Emission Data</h2>
 </body>
 
 <script>
