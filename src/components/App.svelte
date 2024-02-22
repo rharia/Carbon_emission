@@ -12,7 +12,7 @@
   }
   h2 {
     text-align: left;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: normal;
 
   }
@@ -178,10 +178,12 @@
         
         // Add annotation next to the legend
        svg.append("text")
-        .attr("x", width - margin.right - 200)
-        .attr("y", margin.top - 30) // Position above the legend
-        .attr("text-anchor", "end")
-        .style("font-size", "15px")
+        .attr("x", margin.left + 100)
+        .attr("y", margin.top + 50) // Position above the legend
+        .attr("text-anchor", "left")
+        .style("font-size", "20px")
+        .style('font-weight', 'bold')
+        .style('fill', 'black')
         .text("Hover over legend to change visualization");
 
         // Add tooltip
