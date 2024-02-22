@@ -167,14 +167,22 @@
             .attr("dy", ".35em")
             .style("text-anchor", "end")
             .text(function(d) {
-            if (d === 'Less frequently') {
+            if (d === 'less frequently') {
                 return capitalizeFirstLetter("Less Than Once a Day");
-            } else if (d === 'More frequently') {
+            } else if (d === 'more frequently') {
                 return capitalizeFirstLetter("More Than Twice a Day");
             } else {
                 return capitalizeFirstLetter(d === null ? "Unknown" : d);
             } }
             );
+        
+        // Add annotation next to the legend
+       svg.append("text")
+        .attr("x", width - margin.right - 200)
+        .attr("y", margin.top - 30) // Position above the legend
+        .attr("text-anchor", "end")
+        .style("font-size", "15px")
+        .text("Hover over legend to change visualization");
 
         // Add tooltip
         const tooltip = d3.select("h2").append("div")
@@ -182,29 +190,25 @@
                           .style("opacity", 0);
 
         svg.selectAll("circle")
-           .on("mouseover", function(event, d) {
-               tooltip.transition()
-                      .duration(200)
-                      .style("opacity", .9);
-               tooltip.html(`Carbon Emission: ${d.CarbonEmission}<br>Internet Daily Hour: ${d["How Long Internet Daily Hour"]}<br>Clothes Monthly: ${d["How Many New Clothes Monthly"]}`)
-                      .style("right", (event.pageX) + "px")
-                      .style("top", (event.pageY-28) + "px");
-           })
-           .on("mouseout", function(d) {
-               tooltip.transition()
-                      .duration(500)
-                      .style("opacity", 0);
-           });
+            .on("mouseover", function(event, d) {
+                tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                tooltip.html(`Carbon Emission: ${d.CarbonEmission}<br>Clothes Monthly: ${d["How Many New Clothes Monthly"]}`)
+                        .style("right", (event.pageX) + "px")
+                        .style("top", (event.pageY-28) + "px");
+            })
+            .on("mouseout", function(d) {
+                tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+            });
 
         function updateVisualization(event, category) {
             const selectedCategory = category === "Unknown" ? null : category;
             circles.attr("display", function(d) {
                 return d["How Often Shower"] === selectedCategory ? "block" : "none";
             });
-        }
-        
-        function resetVisualization() {
-            d3.selectAll("circle").attr("display", "block");
         }
 
         function capitalizeFirstLetter(string) {
@@ -231,8 +235,7 @@
 <p>    
     Additionally, the size of the bubbles change based on the number of clothes bought monthly. 
     To show the size change, we created a tooltip where hovering over a bubble on the chart will 
-    provide numerical data on carbon emission, clothes bought monthly, and the number of hours the 
-    internet was used daily. 
+    provide numerical data on carbon emission and clothes bought monthly.
 </p>
 
 <p>    
